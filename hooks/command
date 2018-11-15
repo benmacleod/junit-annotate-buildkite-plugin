@@ -41,6 +41,9 @@ if grep -q "<details>" "$annotation_path"; then
   # shellcheck disable=SC2002
   cat "$annotation_path" | buildkite-agent annotate --context junit --style error
 
+  echo "BUILDKITE_PLUGIN_JUNIT_ANNOTATE_FAIL_BUILD_ON_ERROR is ${BUILDKITE_PLUGIN_JUNIT_ANNOTATE_FAIL_BUILD_ON_ERROR}"
+  echo "BUILDKITE_PLUGIN_JUNIT_ANNOTATE_FAIL_BUILD_ON_ERROR:-false is ${BUILDKITE_PLUGIN_JUNIT_ANNOTATE_FAIL_BUILD_ON_ERROR:-false}"
+
   if [[ "${BUILDKITE_PLUGIN_JUNIT_ANNOTATE_FAIL_BUILD_ON_ERROR:-false}" =~ (true|on|1) ]]
   then
     echo "--- :boom: Failing build due to error"
